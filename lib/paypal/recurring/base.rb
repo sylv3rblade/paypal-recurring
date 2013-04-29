@@ -2,6 +2,7 @@ module PayPal
   module Recurring
     class Base
       attr_accessor :amount
+      attr_accessor :brand_name
       attr_accessor :cancel_url
       attr_accessor :currency
       attr_accessor :description
@@ -12,6 +13,7 @@ module PayPal
       attr_accessor :initial_amount
       attr_accessor :initial_amount_action
       attr_accessor :ipn_url
+      attr_accessor :landing_page
       attr_accessor :locale
       attr_accessor :outstanding
       attr_accessor :payer_id
