@@ -60,7 +60,7 @@ module PayPal
       #
       def checkout
         params = collect(
-          :brandname,
+          :brand_name,
           :locale,
           :landing_page,
           :amount,
