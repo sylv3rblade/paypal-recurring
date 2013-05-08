@@ -6,6 +6,7 @@ module PayPal
       attr_accessor :cancel_url
       attr_accessor :currency
       attr_accessor :description
+      attr_accessor :first_name
       attr_accessor :note
       attr_accessor :email
       attr_accessor :failed
@@ -14,6 +15,7 @@ module PayPal
       attr_accessor :initial_amount_action
       attr_accessor :ipn_url
       attr_accessor :landing_page
+      attr_accessor :last_name
       attr_accessor :locale
       attr_accessor :outstanding
       attr_accessor :payer_id
@@ -61,8 +63,10 @@ module PayPal
       def checkout
         params = collect(
           :brand_name,
+          :first_name,
           :locale,
           :landing_page,
+          :last_name,
           :amount,
           :return_url,
           :cancel_url,
