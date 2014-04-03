@@ -17,6 +17,7 @@ module PayPal
           :failed_count        => :FAILEDPAYMENTCOUNT,
           :last_payment_date   => :LASTPAYMENTDATE,
           :last_payment_amount => :LASTPAYMENTAMT,
+          :next_billing_date   => :NEXTBILLINGDATE,
           :period              => :BILLINGPERIOD,
           :frequency           => :BILLINGFREQUENCY,
           :currency            => :CURRENCYCODE,
