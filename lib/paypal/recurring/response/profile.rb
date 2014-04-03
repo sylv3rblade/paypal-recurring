@@ -66,6 +66,7 @@ module PayPal
 
         alias_method :build_start_at, :build_date
         alias_method :build_last_payment_date, :build_date
+        alias_method :build_next_billing_date, :build_date
       end
     end
   end

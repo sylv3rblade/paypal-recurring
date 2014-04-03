@@ -23,6 +23,7 @@ describe PayPal::Recurring::Response::Profile do
     its(:failed_count) { should == "0" }
     its(:last_payment_date) { should be_a(Time) }
     its(:last_payment_amount) { should == "9.00" }
+    its(:next_billing_date) { should be_a(Time) }
     its(:period) { should == :monthly }
     its(:frequency) { should == "1" }
     its(:currency) { should == "BRL" }
