@@ -46,6 +46,10 @@ module PayPal
         type == "recurring_payment_profile_created"
       end
 
+      def recurring_payment_suspended?
+        type == "recurring_payment_suspended"
+      end
+
       def request
         @request ||= PayPal::Recurring::Request.new.tap do |request|
           request.uri = URI.parse("#{PayPal::Recurring.site_endpoint}?cmd=_notify-validate")
