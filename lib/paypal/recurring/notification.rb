@@ -46,6 +46,14 @@ module PayPal
         type == "recurring_payment_profile_created"
       end
 
+      def recurring_payment_suspended?
+        type == "recurring_payment_suspended"
+      end
+
+      def recurring_payment_profile_cancel?
+        type == "recurring_payment_profile_cancel"
+      end
+
       def request
         @request ||= PayPal::Recurring::Request.new.tap do |request|
           request.uri = URI.parse("#{PayPal::Recurring.site_endpoint}?cmd=_notify-validate")
@@ -57,7 +65,15 @@ module PayPal
       end
 
       def valid?
-        completed? && verified? && email == PayPal::Recurring.email && seller_id == PayPal::Recurring.seller_id
+        if payment_received?
+          completed? && verified? && email == PayPal::Recurring.email && seller_id == PayPal::Recurring.seller_id
+        else
+          verified? && email == PayPal::Recurring.email
+        end
+      end
+
+      def payment_received?
+        express_checkout? || recurring_payment?
       end
 
       def completed?
