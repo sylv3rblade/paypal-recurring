@@ -16,6 +16,16 @@ describe PayPal::Recurring::Notification do
     subject.should be_recurring_payment_profile
   end
 
+  it "detects recurring payment suspended" do
+    subject.params[:txn_type] = "recurring_payment_suspended"
+    subject.should be_recurring_payment_suspended
+  end
+
+  it "detects recurring payment profile cancel" do
+    subject.params[:txn_type] = "recurring_payment_profile_cancel"
+    subject.should be_recurring_payment_profile_cancel
+  end
+
   it "normalizes payment date" do
     subject.params[:payment_date] = "20:37:06 Jul 04, 2011 PDT" # PDT = -0700
     subject.paid_at.strftime("%Y-%m-%d %H:%M:%S").should == "2011-07-05 03:37:06"
