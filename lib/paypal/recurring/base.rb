@@ -2,9 +2,11 @@ module PayPal
   module Recurring
     class Base
       attr_accessor :amount
+      attr_accessor :brand_name
       attr_accessor :cancel_url
       attr_accessor :currency
       attr_accessor :description
+      attr_accessor :first_name
       attr_accessor :note
       attr_accessor :email
       attr_accessor :failed
@@ -12,6 +14,8 @@ module PayPal
       attr_accessor :initial_amount
       attr_accessor :initial_amount_action
       attr_accessor :ipn_url
+      attr_accessor :landing_page
+      attr_accessor :last_name
       attr_accessor :locale
       attr_accessor :outstanding
       attr_accessor :payer_id
@@ -31,6 +35,7 @@ module PayPal
       attr_accessor :trial_length
       attr_accessor :trial_period
       attr_accessor :trial_amount
+      attr_accessor :custom
 
       def initialize(options = {})
         options.each {|name, value| send("#{name}=", value)}
@@ -58,7 +63,11 @@ module PayPal
       #
       def checkout
         params = collect(
+          :brand_name,
+          :first_name,
           :locale,
+          :landing_page,
+          :last_name,
           :amount,
           :return_url,
           :cancel_url,
@@ -68,7 +77,8 @@ module PayPal
           :item_category,
           :item_name,
           :item_amount,
-          :item_quantity
+          :item_quantity,
+          :custom
         ).merge(
           :payment_action => "Authorization",
           :no_shipping => 1,
@@ -141,7 +151,8 @@ module PayPal
           :item_category,
           :item_name,
           :item_amount,
-          :item_quantity
+          :item_quantity,
+          :custom
         ).merge(:payment_action => "Sale")
 
         request.run(:payment, params)
@@ -196,7 +207,8 @@ module PayPal
           :item_category,
           :item_name,
           :item_amount,
-          :item_quantity
+          :item_quantity,
+          :custom
         )
         request.run(:create_profile, params)
       end
@@ -228,7 +240,8 @@ module PayPal
           :start_at,
           :outstanding,
           :ipn_url,
-          :email
+          :email,
+          :custom
         )
 
         request.run(:update_profile, params)
@@ -261,7 +274,8 @@ module PayPal
           :refund_type,
           :amount,
           :currency,
-          :note
+          :note,
+          :custom
         )
 
         request.run(:refund, params)

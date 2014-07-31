@@ -17,6 +17,7 @@ module PayPal
           :failed_count        => :FAILEDPAYMENTCOUNT,
           :last_payment_date   => :LASTPAYMENTDATE,
           :last_payment_amount => :LASTPAYMENTAMT,
+          :next_billing_date   => :NEXTBILLINGDATE,
           :period              => :BILLINGPERIOD,
           :frequency           => :BILLINGFREQUENCY,
           :currency            => :CURRENCYCODE,
@@ -56,7 +57,7 @@ module PayPal
         end
 
         def build_date(string)
-          Time.parse(string)
+          Time.parse(string) unless string.blank?
         end
 
         def build_period(value)
@@ -65,6 +66,7 @@ module PayPal
 
         alias_method :build_start_at, :build_date
         alias_method :build_last_payment_date, :build_date
+        alias_method :build_next_billing_date, :build_date
       end
     end
   end

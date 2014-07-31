@@ -74,6 +74,10 @@ describe PayPal::Recurring::Request do
       subject.normalize_params(:amount => "9.00").should == {:PAYMENTREQUEST_0_AMT => "9.00", :AMT => "9.00"}
     end
 
+    it "normalizes custom" do
+      subject.normalize_params(:custom => "abc123").should == {:CUSTOM => 'abc123'}
+    end
+
     it "normalizes currency" do
       subject.normalize_params(:currency => "USD").should == {:CURRENCYCODE => "USD", :PAYMENTREQUEST_0_CURRENCYCODE => "USD"}
     end

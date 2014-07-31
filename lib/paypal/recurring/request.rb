@@ -49,13 +49,16 @@ module PayPal
         :other    => "Other"
       }
 
+      # http://www.paypalobjects.com/en_US/ebook/PP_NVPAPI_DeveloperGuide/Appx_fieldreference.html
       ATTRIBUTES = {
         :action                => "ACTION",
         :amount                => ["PAYMENTREQUEST_0_AMT", "AMT"],
         :billing_type          => "L_BILLINGTYPE0",
+        :brand_name            => "BRANDNAME",
         :cancel_url            => "CANCELURL",
         :currency              => ["PAYMENTREQUEST_0_CURRENCYCODE", "CURRENCYCODE"],
         :description           => ["DESC", "PAYMENTREQUEST_0_DESC", "L_BILLINGAGREEMENTDESCRIPTION0"],
+        :first_name            => "FIRSTNAME",
         :note                  => "NOTE",
         :item_category         => "L_PAYMENTREQUEST_0_ITEMCATEGORY0",
         :item_name             => "L_PAYMENTREQUEST_0_NAME0",
@@ -67,6 +70,8 @@ module PayPal
         :initial_amount        => "INITAMT",
         :initial_amount_action => "FAILEDINITAMTACTION",
         :ipn_url               => ["PAYMENTREQUEST_0_NOTIFYURL", "NOTIFYURL"],
+        :landing_page          => "LANDINGPAGE",
+        :last_name             => "LASTNAME",
         :locale                => "LOCALECODE",
         :method                => "METHOD",
         :no_shipping           => "NOSHIPPING",
@@ -88,7 +93,8 @@ module PayPal
         :trial_length          => "TRIALTOTALBILLINGCYCLES",
         :trial_period          => "TRIALBILLINGPERIOD",
         :username              => "USER",
-        :version               => "VERSION"
+        :version               => "VERSION",
+        :custom                => "CUSTOM"
       }
 
       CA_FILE = File.dirname(__FILE__) + "/cacert.pem"
