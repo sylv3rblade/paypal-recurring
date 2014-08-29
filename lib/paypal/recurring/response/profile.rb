@@ -57,7 +57,7 @@ module PayPal
         end
 
         def build_date(string)
-          Time.parse(string) unless string.empty?
+          Time.parse(string) unless string.nil? or string.empty?
         end
 
         def build_period(value)
