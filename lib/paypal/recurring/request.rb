@@ -94,7 +94,7 @@ module PayPal
         :trial_period          => "TRIALBILLINGPERIOD",
         :username              => "USER",
         :version               => "VERSION",
-        :custom                => "CUSTOM"
+        :custom                => "PAYMENTREQUEST_0_CUSTOM"
       }
 
       CA_FILE = File.dirname(__FILE__) + "/cacert.pem"
